@@ -107,7 +107,7 @@ body {
 
 .el-aside {
   background-color: rgba(116,52,129,1);
-  width: 10rem;
+  width: 11rem;
   top: 3.5rem
 }
 

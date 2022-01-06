@@ -129,7 +129,7 @@ export default {
     },
     queryMonthlyFee() {
       this.chart.clear()
-      let first_day = new Date(this.filter.range[1].getYear()+1900, this.filter.range[1].getMonth()+1, 1)
+      let first_day = new Date(this.filter.range[0].getYear()+1900, this.filter.range[1].getMonth()+1, 1)
       let s_time = this.formatDateTime(first_day)
       let last_day = new Date(this.filter.range[1].getYear()+1900, this.filter.range[1].getMonth()+1, 0)
       let e_time = this.formatDateTime(last_day)
@@ -141,6 +141,7 @@ export default {
         }
       })
         .then((res) => {
+          // console.log(res.data)
           if(res.data.result)
           {
             this.monthly_fee = res.data.info_arr
@@ -151,24 +152,30 @@ export default {
             let Option = {
               title: {
                 show: true,
-                text:"各月份中介费",
+                text:"各月份中介费及成交单数",
                 x: 'center'
               },
               xAxis: {
-              type: 'category',
-              data: monthly_fee_arr.map(item => item.the_month)
+                name: '月份',
+                type: 'category',
+                data: monthly_fee_arr.map(item => item.the_month)
               },
               yAxis: {
-                type: 'value'
+                type: 'value',
+                name: '中介费'
               },
               series: [
                 {
-                  type: 'bar',
-                  barWidth: '7.5%',
+                  name: '中介费',
+                  type: 'line',
                   data: monthly_fee_arr.map(item => item.agc_fee),
                   label: {
                     show: true,
-                    position: 'top'
+                    position: 'top',
+                    formatter : function(param)
+                    {
+                      return param.data/4
+                    }
                   }
                 }
               ]
