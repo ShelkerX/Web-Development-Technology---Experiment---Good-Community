@@ -1,4 +1,4 @@
-# Web Development Technology - Experiment - Good Community
+# Web Development Technology - Experiment - Good Community - Frontend
 
 ## Project setup
 ```
