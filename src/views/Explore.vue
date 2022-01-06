@@ -78,7 +78,7 @@
   </el-dialog>
 
   <el-dialog v-model="responseDialogVisible" title="响应请求" width="30rem">
-    <el-input v-model="responseInfo.response" placeholder="留言" :rows="2" type="textarea"></el-input>
+    <el-input v-model="responseInfo.rsp_idct" placeholder="留言" :rows="2" type="textarea"></el-input>
     <template #footer>
       <span class="dialog-footer">
         <el-button @click="responseDialogVisible = false">取消</el-button>
@@ -273,6 +273,8 @@ export default {
         })
     },
     response() {
+      // console.log('idct')
+      // console.log(this.responseInfo.rsp_idct)
       this.$axios.post('/api/user/response/release', {
         req_id: this.responseInfo.req_id,
         rsp_uid : this.u_id,
